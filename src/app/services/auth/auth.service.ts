@@ -5,10 +5,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  apiUrl = 'https://scout.allsites.es/api';
+  
+  apiUrl = 'http://scout.allsites.es/public/api';
+  
   dataUser:any;
+  
+  token:any;
 
   constructor(private http: HttpClient) { }
+
+  setData(data:any){
+    this.dataUser = data;
+    this.token = data.success.remember_token;
+  }
 
   login(username: string, password: string) {
     return new Promise(resolve => { 
@@ -18,7 +27,7 @@ export class AuthService {
         password: password,
       })
       .subscribe(data => { 
-        this.dataUser = data; 
+        this.setData(data);       
         resolve(data);
       }, err => { 
         console.log(err);

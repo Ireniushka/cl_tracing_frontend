@@ -7,7 +7,16 @@ const routes: Routes = [
   {
     path: '',
     component: PupilsPage
-  }
+  },
+  {
+    path: 'create-pupil',
+    loadChildren: () => import('./create-pupil/create-pupil.module').then( m => m.CreatePupilPageModule)
+  },
+  {
+    path: 'data-pupil',
+    loadChildren: () => import('./create-pupil/create-pupil.module').then( m => m.CreatePupilPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   username: string;
   password: string;
 
-  constructor(private authService: AuthService, private router: Router,  private navCtrl: NavController) { }
+  constructor(private authService: AuthService, private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -22,7 +22,6 @@ export class LoginPage implements OnInit {
     this.authService.login(this.username, this.password).then(data => {
       console.log(data);
       //this.navegar();
-      //this.router.navigate(['home']);
       this.navCtrl.navigateRoot('home');
     }).catch(err => alert('Lo sentimos, los datos introducidos son erróneos'));
   }
