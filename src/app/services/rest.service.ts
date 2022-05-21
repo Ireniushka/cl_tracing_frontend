@@ -6,11 +6,8 @@ providedIn: 'root'
 })
 
 export class RestService {
-
-  // Observa que la apiUrl hace referencia a un servidor real, ya que en localhost
-  // nos dará un problema con los CORS 
   
-  apiUrl = 'https://allsites.es/api/public/api'; 
+  apiUrl = 'http://scout.allsites.es/public/api'; 
   token: any;
 
   constructor(private http: HttpClient) { }

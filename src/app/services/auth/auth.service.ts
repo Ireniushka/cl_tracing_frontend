@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, ViewChild, ViewRef} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class AuthService {
         password: password,
       })
       .subscribe(data => { 
-        this.setData(data);       
+        this.setData(data);     
         resolve(data);
       }, err => { 
         console.log(err);
