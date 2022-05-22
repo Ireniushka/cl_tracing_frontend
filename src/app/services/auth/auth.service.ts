@@ -38,6 +38,7 @@ export class AuthService {
 
   logout(){
    this.dataUser = null;
+   this.token = null;
   }
   
 }

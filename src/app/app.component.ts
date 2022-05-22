@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { AuthService } from './services/auth/auth.service';
+import { PupilsService } from './services/pupils/pupils.service';
+import { RelationI } from './models/relation';
+import { RelationsService } from './services/relations/relations.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +12,13 @@ import { MenuController } from '@ionic/angular';
 })
 
 export class AppComponent {
+  name: String
+  email: String
+
   public counselorPages = [
     { title: 'Mi perfil', url: '/folder/Inbox', icon: 'person' },
-    { title: 'Alumnos', url: 'pupils', icon: 'people-circle' },
-    { title: 'Tutores legales', url: '/folder/Favorites', icon: 'people-circle' },
+    { title: 'Alumnos', url: 'options-pupils', icon: 'people-circle' },
+    { title: 'Tutores legales', url: 'options-tutors', icon: 'people-circle' },
     { title: 'Ejercicios', url: '/folder/Archived', icon: 'document-attach' },
     { title: 'Tests', url: '/folder/Trash', icon: 'document-text' },
   ];
@@ -21,12 +28,9 @@ export class AppComponent {
     { title: 'Ejercicios', url: '/folder/Inbox', icon: 'document-attach' }
   ];
 
-  public pupilArray = [
-    {name: "Marta", pupil_id: 2, url: '/folder/Trash', icon: 'person'},
-    {name: "Pepito", pupil_id: 9, url: '/folder/Trash', icon: 'person'},
-  ]
+  public pupilArray = []
 
-  constructor(private menu: MenuController) {}
+  constructor(private menu: MenuController, private authService: AuthService, private pupilService: PupilsService, private relationsService: RelationsService) {}
 
   ngOnInit() {
     //this.menu.enable(false);
@@ -37,7 +41,38 @@ export class AppComponent {
   }
   
   controlUserType(){
-    this.menu.enable(true, 'tutor-menu');
-    //this.menu.enable(false, 'counselor-menu');
+    this.name = this.authService.dataUser.success.name
+    this.email = this.authService.dataUser.success.email
+
+    if(this.authService.dataUser.success.type == "counselor"){
+      this.menu.enable(true, 'counselor-menu');
+    }else{
+      this.getRelations()
+      this.menu.enable(true, 'tutor-menu');
+    }
   }
+
+  getRelations(){
+    this.relationsService.getAllRelations().then(res => {
+      this.getPupils(res);
+    });
+  }
+
+  getPupils(data: any){
+    let relations = data.relations.filter((relation) => relation.user_id == this.authService.dataUser.success.id)
+
+    for(let index in relations){
+      this.pupilService.getPupil(relations[index].pupil_id).then(dataPupil => {
+        this.fillPupilArray(dataPupil);
+      });
+    }
+    
+  
+  }
+
+  fillPupilArray(dataPupil: any){
+    this.pupilArray.push({name: dataPupil.Pupil.name, pupil_id: dataPupil.Pupil.id, url: '/pupil/', icon: 'person'})
+    console.log(this.pupilArray)
+  }
+
 }

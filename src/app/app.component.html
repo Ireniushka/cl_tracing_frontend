@@ -2,21 +2,21 @@
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay" menuId="counselor-menu">
             <ion-content>
-                <ion-list id="inbox-list">
-                    <ion-list-header>Inbox</ion-list-header>
-                    <ion-note>hi@ionicframework.com</ion-note>
+                <ion-list id="cruds">
+                    <ion-list-header>{{name}}</ion-list-header>
+                    <ion-note>{{email}}</ion-note>
 
                     <ion-menu-toggle auto-hide="false" *ngFor="let a of counselorPages; let i = index">
-                        <ion-item routerDirection="root" [routerLink]="[a.url]" lines="none" detail="false" routerLinkActive="selected">
+                        <ion-item routerDirection="root" [routerLink]="[a.url]" lines="none" detail="false">
                             <ion-icon slot="start" [ios]="a.icon + '-outline'" [md]="a.icon + '-sharp'"></ion-icon>
                             <ion-label>{{ a.title }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
 
-                <ion-list id="news-list">
+                <ion-list id="test">
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item lines="none" routerLink="" detail="false" routerLinkActive="selected">
+                        <ion-item lines="none" routerLink="" detail="false">
                             <ion-icon slot="start" name="document-text"></ion-icon>
                             <ion-label>Realizar test</ion-label>
                         </ion-item>
@@ -24,27 +24,27 @@
                 </ion-list>
 
                 <ion-list>
-                    <ion-back-button text="Volver" defaultHref="/home"></ion-back-button>
+                    <ion-back-button text="Atrás" defaultHref="/home"></ion-back-button>
                 </ion-list>
             </ion-content>
         </ion-menu>
         <ion-menu contentId="main-content" type="overlay" menuId="tutor-menu">
             <ion-content>
-                <ion-list id="inbox-list">
-                    <ion-list-header>Inbox</ion-list-header>
-                    <ion-note>hi@ionicframework.com</ion-note>
+                <ion-list id="todo">
+                    <ion-list-header>{{name}}</ion-list-header>
+                    <ion-note>{{email}}</ion-note>
 
                     <ion-menu-toggle auto-hide="false" *ngFor="let a of tutorPages; let i = index">
-                        <ion-item routerDirection="root" [routerLink]="[a.url]" lines="none" detail="false" routerLinkActive="selected">
+                        <ion-item routerDirection="root" [routerLink]="[a.url]" lines="none" detail="false">
                             <ion-icon slot="start" [ios]="a.icon + '-outline'" [md]="a.icon + '-sharp'"></ion-icon>
                             <ion-label>{{ a.title }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
 
-                <ion-list id="news-list" *ngFor="let b of pupilArray; let i = index">
+                <ion-list id="pupils" *ngFor="let b of pupilArray; let i = index">
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item-divider routerDirection="root" [routerLink]="[b.url]" lines="none" detail="false" routerLinkActive="selected">
+                        <ion-item-divider routerDirection="root" [routerLink]="[b.url]" lines="none" detail="false">
                             <ion-icon slot="start" [ios]="b.icon + '-outline'" [md]="b.icon + '-sharp'"></ion-icon>
                             <ion-label>{{ b.name }}</ion-label>
                         </ion-item-divider>
@@ -52,7 +52,8 @@
                 </ion-list>
 
                 <ion-list>
-                    <ion-back-button text="Volver" defaultHref="/home"></ion-back-button>
+
+                    <ion-back-button text="Atrás" defaultHref="/home"></ion-back-button>
                 </ion-list>
             </ion-content>
         </ion-menu>
