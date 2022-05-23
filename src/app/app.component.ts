@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from './services/auth/auth.service';
 import { PupilsService } from './services/pupils/pupils.service';
-import { RelationI } from './models/relation';
 import { RelationsService } from './services/relations/relations.service';
 
 @Component({
@@ -16,16 +15,16 @@ export class AppComponent {
   email: String
 
   public counselorPages = [
-    { title: 'Mi perfil', url: '/folder/Inbox', icon: 'person' },
+    { title: 'Mi perfil', url: 'my-profile', icon: 'person' },
     { title: 'Alumnos', url: 'options-pupils', icon: 'people-circle' },
     { title: 'Tutores legales', url: 'options-tutors', icon: 'people-circle' },
-    { title: 'Ejercicios', url: '/folder/Archived', icon: 'document-attach' },
-    { title: 'Tests', url: '/folder/Trash', icon: 'document-text' },
+    { title: 'Ejercicios', url: 'options-acts', icon: 'document-attach' },
+    { title: 'Tests', url: 'options-test', icon: 'document-text' },
   ];
 
   public tutorPages = [
-    { title: 'Mi perfil', url: '/folder/Inbox', icon: 'person' },
-    { title: 'Ejercicios', url: '/folder/Inbox', icon: 'document-attach' }
+    { title: 'Mi perfil', url: 'my-profile', icon: 'person' },
+    { title: 'Ejercicios', url: 'options-acts', icon: 'document-attach' }
   ];
 
   public pupilArray = []
@@ -33,7 +32,6 @@ export class AppComponent {
   constructor(private menu: MenuController, private authService: AuthService, private pupilService: PupilsService, private relationsService: RelationsService) {}
 
   ngOnInit() {
-    //this.menu.enable(false);
   }
 
   enableMenus(){
@@ -71,7 +69,7 @@ export class AppComponent {
   }
 
   fillPupilArray(dataPupil: any){
-    this.pupilArray.push({name: dataPupil.Pupil.name, pupil_id: dataPupil.Pupil.id, url: '/pupil/', icon: 'person'})
+    this.pupilArray.push({name: dataPupil.Pupil.name, pupil_id: dataPupil.Pupil.id, url: 'tracing-pupil/:id', icon: 'person'})
     console.log(this.pupilArray)
   }
 
