@@ -1,9 +1,55 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>my-profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header></app-header>
 <ion-content>
-
+    <ion-toolbar class="ion-text-center">
+        <ion-title size="large"> Perfil de {{user.success.name}}</ion-title>
+    </ion-toolbar>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Datos personales:</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item lines="none">
+                <ion-label class="ion-text-nowrap">Nombre completo: </ion-label>
+                <ion-label>{{user.success.name}} {{user.success.last_name}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label class="ion-text-nowrap" position="fixed">Dni: </ion-label>
+                <ion-label type="password">{{user.success.dni}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label class="ion-text-nowrap" position="fixed">E-mail: </ion-label>
+                <ion-label>{{user.success.email}}</ion-label>
+                <ion-icon name="create-outline" slot="end" (click)="presentAlertEmail()"></ion-icon>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Datos de conexión:</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item lines="none">
+                <ion-label class="ion-text-nowrap" position="fixed">Usuario: </ion-label>
+                <ion-label>{{user.success.username}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label class="ion-text-nowrap" position="fixed">Contraseña: </ion-label>
+                <ion-input type="password" [placeholder]="user.success.password" readonly></ion-input>
+                <ion-icon name="create-outline" slot="end" (click)="presentAlertPassword()"></ion-icon>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Contacto del coordinador:</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label class="text-wrap"><i>Para consultas y cambio de más datos, contacte con el coordinador del centro.</i></ion-label>
+            <ion-item lines="none">
+                <ion-icon name="mail-outline" slot="start"></ion-icon>
+                <ion-label class="ion-text-nowrap">admin@salesianos.com</ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-button class="text-wrap text-capitalize centrar" shape="round" size="small" color="tertiary" (click)="logout()"><span text-capitalize>cerrar sesión</span></ion-button>
 </ion-content>

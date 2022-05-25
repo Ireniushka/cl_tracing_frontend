@@ -11,7 +11,7 @@ export class OptionsTutorsPage implements OnInit {
   tutors: any;
   tutor: any;
 
-  constructor(private tutorsService: UsersService, private navCtrl: NavController, public alertController: AlertController) {
+  constructor(private tutorsService: UsersService, private navCtrl: NavController, private alertController: AlertController) {
     this.getTutors();
   }
 
