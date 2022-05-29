@@ -34,7 +34,6 @@ export class UsersService {
       })
       .subscribe(data => {
       resolve(data);
-      // this.navCtrl.navigateRoot('/tabs');
       }, err => {
         console.log(err);
       });
@@ -49,7 +48,6 @@ export class UsersService {
       })
       .subscribe(data => {
       resolve(data);
-      // this.navCtrl.navigateRoot('/tabs');
       }, err => {
         console.log(err);
       });
@@ -100,5 +98,39 @@ export class UsersService {
 
       });
       });
+  }
+
+  updateLastName($last_name){
+    return new Promise(resolve => {
+      this.http.put(this.apiUrl + '/users/' + this.LoginService.dataUser.success.id,
+      {
+        last_name: $last_name
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
+      })
+      .subscribe(data => {
+        resolve(data);
+        }, err => {
+          console.log(err);
+        });
+        });
+  }
+
+  updatePass($pass){
+    return new Promise(resolve => {
+      this.http.put(this.apiUrl + '/users/' + this.LoginService.dataUser.success.id,
+      {
+        password: $pass
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
+      })
+      .subscribe(data => {
+        resolve(data);
+        }, err => {
+          console.log(err);
+        });
+        });
   }
 }

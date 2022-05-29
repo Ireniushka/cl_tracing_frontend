@@ -41,7 +41,7 @@ export class OptionsTutorsPage implements OnInit {
   }
 
   createTutor(){
-    this.navCtrl.navigateRoot('create-pupil');
+    this.navCtrl.navigateRoot('create-tutor');
   }
 
   doRefresh(event) {
@@ -55,20 +55,11 @@ export class OptionsTutorsPage implements OnInit {
   go($event){
     console.log(this.tutor);
     switch($event.detail.value){
-      case "test" : 
-        this.navCtrl.navigateRoot('home');
-        break;
-      case "ejercicio" : 
-        this.navCtrl.navigateRoot('home');
-        break;
       case "datos" : 
-        this.navCtrl.navigateRoot('data-pupil');
-        break;
-      case "seguimiento" : 
-        this.navCtrl.navigateRoot('data-pupil');
+        this.navCtrl.navigateRoot('home');
         break;
       case "eliminar" : 
-        this.presentAlertConfirm();
+        this.navCtrl.navigateRoot('home');
         break;
     }
   }
@@ -94,7 +85,7 @@ export class OptionsTutorsPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           id: 'cancel-button',
-          handler: (blah) => {
+          handler: () => {
             console.log('Cancela');
           }
         }

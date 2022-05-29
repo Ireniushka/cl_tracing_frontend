@@ -88,7 +88,6 @@ export class PupilsService {
       })
       .subscribe(data => {
       resolve(data);
-      // this.navCtrl.navigateRoot('/tabs');
       }, err => {
         console.log(err);
       });

@@ -7,10 +7,10 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
+  // <{
+  //   path: 'folder/:id',
+  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  // },>
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -63,6 +63,20 @@ const routes: Routes = [
     path: 'do-test',
     loadChildren: () => import('./pages/test/do-test/do-test.module').then( m => m.DoTestPageModule)
   },
+  {
+    path: 'tracings',
+    loadChildren: () => import('./pages/pupils/tracings/tracings.module').then( m => m.TracingsPageModule)
+  },
+  {
+    path: 'data-tutor',
+    loadChildren: () => import('./pages/legal-tutors/data-tutor/data-tutor.module').then( m => m.DataTutorPageModule)
+  },
+  {
+    path: 'create-tutor',
+    loadChildren: () => import('./pages/legal-tutors/create-tutor/create-tutor.module').then( m => m.CreateTutorPageModule)
+  },
+
+
 
   
 

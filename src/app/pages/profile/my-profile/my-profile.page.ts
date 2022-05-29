@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { NavController, AlertController } from '@ionic/angular';
+import { UsersService } from '../../../services/users/users.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -10,7 +11,7 @@ import { NavController, AlertController } from '@ionic/angular';
 export class MyProfilePage implements OnInit {
   user:any 
 
-  constructor(private authService: AuthService, private navCtrl: NavController, private alertController: AlertController) { }
+  constructor(private authService: AuthService, private navCtrl: NavController, private alertController: AlertController, private userService: UsersService) { }
 
   ngOnInit() {
     this.user = this.authService.dataUser
@@ -22,24 +23,33 @@ export class MyProfilePage implements OnInit {
     
   }
 
+  testPass($pass){
+    if (this.user.success.password == $pass) {
+      this.presentAlertPasswordGood();
+    }else {
+      this.presentAlertPasswordBad();
+    }
+  }
+
+
   async presentAlertEmail() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Introduzca el nuevo e-mail',
       inputs: [
         {
-          name: 'E-mail: ',
-          type: 'text',
-          id: 'newEmail'
+          name: 'email: ',
+          type: 'email',
         }
       ],
       buttons: [
         {
           text: 'Cambiar',
           id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            //changeEmail()
+          cssClass: 'secondary',
+          handler: (alertData) => {
+            this.userService.updateLastName(alertData.email)
+            location.reload();
           }
         },
         {
@@ -62,20 +72,17 @@ export class MyProfilePage implements OnInit {
       cssClass: 'my-custom-class',
       header: 'Comprobemos',
       message: 'Primero introduzca su contraseña actual',
-      inputs: [
-        {
-          name: 'old-pass',
+      inputs: [{
+          name: 'oldPass',
           type: 'text',
-          id: 'old-pass'
-        }
-      ],
+      }],
       buttons: [
         {
           text: 'Comprobar',
           id: 'confirm-button',
-          handler: () => {
+          handler: (alertData) => {
             console.log('Confirm Okay');
-            //testPass()--> presentAlertPassword2 / 3()
+            this.testPass(alertData.oldPass);
           }
         },
         {
@@ -93,24 +100,24 @@ export class MyProfilePage implements OnInit {
     await alert.present();
   }
 
-  async presentAlertPassword2() {
+  async presentAlertPasswordGood() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Contraseña correcta',
       message: 'Indique la nueva contraseña',
       inputs: [
         {
-          name: 'new-pass',
+          name: 'newPass',
           type: 'text',
-          id: 'new-pass'
         }
       ],
       buttons: [
         {
           text: 'Estoy seguro',
           id: 'confirm-button',
-          handler: () => {
+          handler: (alertData) => {
             console.log('Confirm Okay');
+            this.userService.updatePass(alertData.newPass);
             location.reload();
           }
         },
@@ -119,7 +126,7 @@ export class MyProfilePage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           id: 'cancel-button',
-          handler: (blah) => {
+          handler: () => {
             console.log('Cancela');
           }
         }
@@ -129,7 +136,7 @@ export class MyProfilePage implements OnInit {
     await alert.present();
   }
 
-  async presentAlertPassword3() {
+  async presentAlertPasswordBad() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Contraseña incorrecta',
@@ -144,7 +151,6 @@ export class MyProfilePage implements OnInit {
         // }
       ]
     });
-
     await alert.present();
   }
 

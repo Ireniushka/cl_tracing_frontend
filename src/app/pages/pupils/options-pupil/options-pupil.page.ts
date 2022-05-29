@@ -94,7 +94,7 @@ export class OptionsPupilPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           id: 'cancel-button',
-          handler: (blah) => {
+          handler: () => {
             console.log('Confirm Cancel: blah');
           }
         }

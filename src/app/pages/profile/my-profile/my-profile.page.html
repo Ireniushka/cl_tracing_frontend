@@ -39,7 +39,7 @@
             </ion-item>
         </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card *ngIf="user.success.type == 'legal-tutor'">
         <ion-card-header>
             <ion-card-subtitle>Contacto del coordinador:</ion-card-subtitle>
         </ion-card-header>
@@ -51,5 +51,6 @@
             </ion-item>
         </ion-card-content>
     </ion-card>
-    <ion-button class="text-wrap text-capitalize centrar" shape="round" size="small" color="tertiary" (click)="logout()"><span text-capitalize>cerrar sesión</span></ion-button>
+    <br>
+    <ion-button expand="block" class="m-2 text-wrap text-capitalize" size="small" color="tertiary" (click)="logout()"><span text-capitalize>cerrar sesión</span></ion-button>
 </ion-content>
