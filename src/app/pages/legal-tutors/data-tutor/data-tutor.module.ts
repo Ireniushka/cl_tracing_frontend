@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DataTutorPageRoutingModule } from './data-tutor-routing.module';
 
 import { DataTutorPage } from './data-tutor.page';
+import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DataTutorPageRoutingModule
+    DataTutorPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [DataTutorPage]
 })

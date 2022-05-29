@@ -1,9 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>data-tutor</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
+    <ion-toolbar>
+        <br>
+        <br>
+        <ion-title size="large" class="ion-text-center">Datos del alumno</ion-title>
+    </ion-toolbar>
+    <br>
+    <ion-list lines="none" class="p-4">
+        <ion-item>
+            <ion-label>Nombre: </ion-label>
+            <ion-label>{{tutor.name}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>Apellidos: </ion-label>
+            <ion-label>{{tutor.last_name}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dni: </ion-label>
+            <ion-label>{{tutor.dni}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>Curso: </ion-label>
+            <ion-label>{{tutor.course}}</ion-label>
+        </ion-item>
+    </ion-list>
+    <br>
+    <br>
 
+    <ion-card *ngIf="boolPupil">
+        <ion-card-header>
+            <ion-card-subtitle>
+                <ion-label *ngIf="onePupil">Datos del alumno</ion-label>
+                <ion-label *ngIf="manyPupils">Datos de los alumnos</ion-label>
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list auto-hide="false" *ngFor="let pupil of pupils; let i = index">
+                <ion-item routerDirection="root" [routerLink]="[pupil.url]" lines="none" detail="false">
+                    <ion-nav-link></ion-nav-link>
+                    <ion-label class="p-1">{{ pupil.name}} {{pupil.lastname}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <br>
+    <br>
+    <br>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="pencil" (click)="modifyTutor()"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

@@ -72,9 +72,9 @@ export class TrackTestsService {
       });
   }
 
-  updateTracing(data: any){
+  updateTracing(data: any, $id){
     return new Promise(resolve => {
-      this.http.put(this.apiUrl + '/tracking_tests',
+      this.http.put(this.apiUrl + '/tracking_tests/' + $id,
       {
         pupil_id: data.pupil_id,
         comment: data.comment

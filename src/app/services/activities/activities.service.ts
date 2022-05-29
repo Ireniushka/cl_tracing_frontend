@@ -77,9 +77,9 @@ export class ActivitiesService {
       });
   }
 
-  updateActivity(data: any){
+  updateActivity(data: any, $id){
     return new Promise(resolve => {
-      this.http.put(this.apiUrl + '/activities',
+      this.http.put(this.apiUrl + '/activities/' + $id,
       {
         name: data.name,
         url: data.url,

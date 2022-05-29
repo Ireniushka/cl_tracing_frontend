@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<ion-content>
+    <ion-toolbar>
+        <br>
+        <br>
+        <ion-title size="large" class="ion-text-center">Editando alumno</ion-title>
+    </ion-toolbar>
+    <br>
+    <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.name" name="name" [placeholder]="tutor.name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.last_name" name="lastname" [placeholder]="tutor.last_name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Dni</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.dni" name="dni" [placeholder]="tutor.dni"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.username" name="username" [placeholder]=" tutor.username"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.password" name="password" [placeholder]="tutor.password"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Contraseña cambiada</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.passChanged" name="passChanged" [placeholder]="tutor.passChanged"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="text" [(ngModel)]="tutor.email" name="email" [placeholder]="tutor.email"></ion-input>
+    </ion-item>
+    <br>
+    <ion-card *ngIf="boolPupil">
+        <ion-card-header>
+            <ion-card-subtitle>
+                <ion-label *ngIf="onePupil ">Datos del alumno</ion-label>
+                <ion-label *ngIf="manyPupils ">Datos de los alumnos</ion-label>
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list auto-hide="false " *ngFor="let pupil of pupils; let i=index ">
+                <ion-item lines="none " detail="false ">
+                    <ion-button slot="start " color="danger ">
+                        <ion-icon name="trash-outline " (click)="deletePupil() "></ion-icon>
+                    </ion-button>
+                    <ion-label class="p-1 ">{{ pupil.name}} {{pupil.lastname}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <br>
+    <ion-button color="success " (click)="submitUpdate() " expand="block ">Guardar</ion-button>
+    <br>
+</ion-content>

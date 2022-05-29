@@ -7,10 +7,10 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  // <{
-  //   path: 'folder/:id',
-  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  // },>
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -18,10 +18,6 @@ const routes: Routes = [
   {
     path: 'options-pupils',
     loadChildren: () => import('./pages/pupils/options-pupil/options-pupil.module').then( m => m.OptionsPupilPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'options-tutors',
@@ -68,13 +64,30 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pupils/tracings/tracings.module').then( m => m.TracingsPageModule)
   },
   {
-    path: 'data-tutor',
+    path: 'data-tutor/:id',
     loadChildren: () => import('./pages/legal-tutors/data-tutor/data-tutor.module').then( m => m.DataTutorPageModule)
   },
   {
     path: 'create-tutor',
     loadChildren: () => import('./pages/legal-tutors/create-tutor/create-tutor.module').then( m => m.CreateTutorPageModule)
   },
+  {
+    path: 'data-pupil/:id',
+    loadChildren: () => import('./pages/pupils/data-pupil/data-pupil.module').then( m => m.DataPupilPageModule)
+  },
+  {
+    path: 'create-pupil',
+    loadChildren: () => import('./pages/pupils/create-pupil/create-pupil.module').then( m => m.CreatePupilPageModule)
+  },
+  {
+    path: 'update-tutor/:id',
+    loadChildren: () => import('./pages/legal-tutors/update-tutor/update-tutor.module').then( m => m.UpdateTutorPageModule)
+  },
+  {
+    path: 'update-pupil/:id',
+    loadChildren: () => import('./pages/pupils/update-pupil/update-pupil.module').then( m => m.UpdatePupilPageModule)
+  },
+
 
 
 

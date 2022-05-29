@@ -72,9 +72,9 @@ export class TrackActivitiesService {
       });
   }
 
-  updateTracing(data: any){
+  updateTracing(data: any, $id){
     return new Promise(resolve => {
-      this.http.put(this.apiUrl + '/tracking_acts',
+      this.http.put(this.apiUrl + '/tracking_acts/' + $id,
       {
         pupil_id: data.pupil_id,
         activity_id: data.activity_id,

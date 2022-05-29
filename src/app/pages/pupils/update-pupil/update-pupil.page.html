@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+<ion-content>
+    <ion-toolbar>
+        <br>
+        <br>
+        <ion-title size="large" class="ion-text-center">Editando alumno</ion-title>
+    </ion-toolbar>
+    <br>
+    <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="pupil.name" name="name" [placeholder]="pupil.name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input type="text" [(ngModel)]="pupil.last_name" name="lastname" [placeholder]="pupil.last_name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Dni</ion-label>
+        <ion-input type="text" [(ngModel)]="pupil.dni" name="dni" [placeholder]="pupil.dni"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Curso</ion-label>
+        <ion-input type="text" [(ngModel)]="pupil.course" name="course" [placeholder]="pupil.course"></ion-input>
+    </ion-item>
+    <br>
+    <ion-card *ngIf="boolTutor">
+        <ion-card-header>
+            <ion-card-subtitle>
+                <ion-label *ngIf="oneTutor">Datos del tutor legal</ion-label>
+                <ion-label *ngIf="manyTutors">Datos de los tutores legales</ion-label>
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list auto-hide="false" *ngFor="let tutor of tutors; let i = index">
+                <ion-item lines="none" detail="false">
+                    <ion-button slot="start" color="danger">
+                        <ion-icon name="trash-outline" (click)="deleteTutor()"></ion-icon>
+                    </ion-button>
+                    <ion-label class="p-1">{{ tutor.name}} {{tutor.lastname}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <br>
+    <ion-button color="success" (click)="submitUpdate()" expand="block">Guardar</ion-button>
+    <br>
+</ion-content>

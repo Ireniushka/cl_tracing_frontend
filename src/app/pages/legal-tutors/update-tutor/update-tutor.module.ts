@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DataPupilPageRoutingModule } from './data-pupil-routing.module';
+import { UpdateTutorPageRoutingModule } from './update-tutor-routing.module';
 
-import { DataPupilPage } from './data-pupil.page';
+import { UpdateTutorPage } from './update-tutor.page';
 import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from '../../../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    DataPupilPageRoutingModule,
+    UpdateTutorPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [DataPupilPage]
+  declarations: [UpdateTutorPage]
 })
-export class DataPupilPageModule {}
+export class UpdateTutorPageModule {}

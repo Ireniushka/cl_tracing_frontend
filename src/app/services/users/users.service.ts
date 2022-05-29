@@ -77,9 +77,9 @@ export class UsersService {
       });
   }
 
-  updateUser(data: any){
+  updateUser(data: any, $id){
     return new Promise(resolve => {
-      this.http.put(this.apiUrl + '/users',
+      this.http.put(this.apiUrl + '/users'+ $id,
       {
       dni: data.dni,
       type: data.type,

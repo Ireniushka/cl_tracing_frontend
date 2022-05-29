@@ -19,8 +19,8 @@ export class OptionsPupilPage implements OnInit {
     
   }
 
-  setPupils(data: any){
-    this.pupils = data.Pupils;
+  setPupils($data: any){
+    this.pupils = $data.Pupils;
   }
 
   getPupils(){
@@ -28,16 +28,16 @@ export class OptionsPupilPage implements OnInit {
   }
 
 
-  setPupil(data: any){
-    this.pupil = data.Pupil;
+  setPupil($data: any){
+    this.pupil = $data.Pupil;
   }
 
-  getPupil(id: any){
-    this.pupilsService.getPupil(id).then(data=>{this.setPupil(data)});
+  getPupil($id: any){
+    this.pupilsService.getPupil($id).then(data=>{this.setPupil(data)});
   }
 
-  deletePupil(id){
-    this.pupilsService.deletePupil(id);
+  deletePupil($id: any){
+    this.pupilsService.deletePupil($id);
   }
 
   createPupil(){
@@ -54,6 +54,7 @@ export class OptionsPupilPage implements OnInit {
 
   go($event){
     console.log(this.pupil);
+    console.log(this.pupil.id);
     switch($event.detail.value){
       case "test" : 
         this.navCtrl.navigateRoot('home');
@@ -62,10 +63,10 @@ export class OptionsPupilPage implements OnInit {
         this.navCtrl.navigateRoot('home');
         break;
       case "datos" : 
-        this.navCtrl.navigateRoot('data-pupil');
+        this.navCtrl.navigateRoot('data-pupil/'+ this.pupil.id);
         break;
       case "seguimiento" : 
-        this.navCtrl.navigateRoot('data-pupil');
+        this.navCtrl.navigateRoot('data-pupil/'+ this.pupil.id);
         break;
       case "eliminar" : 
         this.presentAlertConfirm();
