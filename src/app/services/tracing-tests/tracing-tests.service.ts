@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
+
 @Injectable({
   providedIn: 'root'
 })
-export class TrackActivitiesService {
+export class TracingTestsService {
 
   apiUrl = 'http://scout.allsites.es/public/api';   
 
@@ -13,7 +14,7 @@ export class TrackActivitiesService {
 
   getAllTracings(){
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + '/tracking_acts',
+      this.http.get(this.apiUrl + '/tracking_tests',
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
       })
@@ -27,7 +28,7 @@ export class TrackActivitiesService {
 
   getTracingData($id){
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + '/tracking_acts/' + $id,
+      this.http.get(this.apiUrl + '/tracking_tests/' + $id,
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
       })
@@ -41,7 +42,7 @@ export class TrackActivitiesService {
 
   deleteTracing($id){
     return new Promise(resolve => {
-      this.http.delete(this.apiUrl + '/tracking_acts/' + $id,
+      this.http.delete(this.apiUrl + '/tracking_tests/' + $id,
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
       })
@@ -55,10 +56,9 @@ export class TrackActivitiesService {
 
   createTracing(data: any){
     return new Promise(resolve => {
-      this.http.post(this.apiUrl + '/tracking_acts',
+      this.http.post(this.apiUrl + '/tracking_tests',
       {
         pupil_id: data.pupil_id,
-        activity_id: data.activity_id,
         comment: data.comment
       },{
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
@@ -74,10 +74,9 @@ export class TrackActivitiesService {
 
   updateTracing(data: any, $id){
     return new Promise(resolve => {
-      this.http.put(this.apiUrl + '/tracking_acts/' + $id,
+      this.http.put(this.apiUrl + '/tracking_tests/' + $id,
       {
         pupil_id: data.pupil_id,
-        activity_id: data.activity_id,
         comment: data.comment
       },{
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
@@ -90,5 +89,4 @@ export class TrackActivitiesService {
       });
       });
   }
-
 }

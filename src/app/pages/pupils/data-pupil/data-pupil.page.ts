@@ -11,7 +11,7 @@ import { UpdatePupilPageModule } from '../update-pupil/update-pupil.module';
 })
 export class DataPupilPage implements OnInit {
   pupilId:any;
-  pupil={name: "", dni:"", course:"", last_name:""}
+  pupil = {name: "", dni:"", course:"", last_name:""}
 
   boolTutor: Boolean;
   oneTutor: Boolean;

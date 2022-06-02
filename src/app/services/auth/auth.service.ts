@@ -40,5 +40,9 @@ export class AuthService {
    this.dataUser = null;
    this.token = null;
   }
+
+  getTypeUser(){
+    return this.dataUser.success.type
+  }
   
 }

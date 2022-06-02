@@ -60,7 +60,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/test/do-test/do-test.module').then( m => m.DoTestPageModule)
   },
   {
-    path: 'tracings',
+    path: 'tracings/:id',
     loadChildren: () => import('./pages/pupils/tracings/tracings.module').then( m => m.TracingsPageModule)
   },
   {

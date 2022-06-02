@@ -5,8 +5,9 @@ import { AuthService } from '../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TrackTestsService {
+export class TracingActivitiesService {
 
+  
   apiUrl = 'http://scout.allsites.es/public/api';   
 
   constructor(private http: HttpClient, private LoginService: AuthService) { }
@@ -14,7 +15,7 @@ export class TrackTestsService {
 
   getAllTracings(){
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + '/tracking_tests',
+      this.http.get(this.apiUrl + '/tracking_acts',
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
       })
@@ -28,7 +29,7 @@ export class TrackTestsService {
 
   getTracingData($id){
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + '/tracking_tests/' + $id,
+      this.http.get(this.apiUrl + '/tracking_acts/' + $id,
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
       })
@@ -42,7 +43,7 @@ export class TrackTestsService {
 
   deleteTracing($id){
     return new Promise(resolve => {
-      this.http.delete(this.apiUrl + '/tracking_tests/' + $id,
+      this.http.delete(this.apiUrl + '/tracking_acts/' + $id,
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
       })
@@ -56,9 +57,10 @@ export class TrackTestsService {
 
   createTracing(data: any){
     return new Promise(resolve => {
-      this.http.post(this.apiUrl + '/tracking_tests',
+      this.http.post(this.apiUrl + '/tracking_acts',
       {
         pupil_id: data.pupil_id,
+        activity_id: data.activity_id,
         comment: data.comment
       },{
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
@@ -74,9 +76,10 @@ export class TrackTestsService {
 
   updateTracing(data: any, $id){
     return new Promise(resolve => {
-      this.http.put(this.apiUrl + '/tracking_tests/' + $id,
+      this.http.put(this.apiUrl + '/tracking_acts/' + $id,
       {
         pupil_id: data.pupil_id,
+        activity_id: data.activity_id,
         comment: data.comment
       },{
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),

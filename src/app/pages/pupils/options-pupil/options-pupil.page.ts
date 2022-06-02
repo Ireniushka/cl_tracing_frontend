@@ -66,7 +66,7 @@ export class OptionsPupilPage implements OnInit {
         this.navCtrl.navigateRoot('data-pupil/'+ this.pupil.id);
         break;
       case "seguimiento" : 
-        this.navCtrl.navigateRoot('data-pupil/'+ this.pupil.id);
+        this.navCtrl.navigateRoot('tracings/'+ this.pupil.id);
         break;
       case "eliminar" : 
         this.presentAlertConfirm();
