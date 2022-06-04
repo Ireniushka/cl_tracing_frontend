@@ -1,9 +1,194 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>options-acts</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Actualizando..">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-toolbar>
+        <ion-title class="ion-text-center">
+            <h1>Ejercicios</h1>
+        </ion-title>
+    </ion-toolbar>
+    <ion-list *ngIf="user.success.type == 'counselor'">
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de atención:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item-sliding *ngIf="act.file_type == 'atencion'">
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="confirmDelete(act.id)">Eliminar</ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="tertiary" (click)="updateActivity(act.id)">Editar</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de lateralidad:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item-sliding *ngIf="act.file_type == 'lateralidad'">
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="confirmDelete(act.id)">Eliminar</ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="tertiary" (click)="updateActivity(act.id)">Editar</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de simetría:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item-sliding *ngIf="act.file_type == 'simetria'">
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="confirmDelete(act.id)">Eliminar</ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="tertiary" (click)="updateActivity(act.id)">Editar</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de encuentra las diferencias:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item-sliding *ngIf="act.file_type == 'diferencias'">
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="confirmDelete(act.id)">Eliminar</ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="tertiary" (click)="updateActivity(act.id)">Editar</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas variadas:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item-sliding *ngIf="act.file_type == 'otros'">
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="confirmDelete(act.id)">Eliminar</ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="tertiary" (click)="updateActivity(act.id)">Editar</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+        <br>
+    </ion-list>
+
+    <!-- ------------------------------------- -->
+
+    <ion-list *ngIf="user.success.type == 'legal-tutor'">
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de atención:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item *ngIf="act.file_type == 'atencion'">
+                <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+        </div>
+
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de lateralidad:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item *ngIf="act.file_type == 'lateralidad'">
+                <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+        </div>
+
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de simetría:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item *ngIf="act.file_type == 'simetria'">
+                <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+        </div>
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas de encuentra las diferencias:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item *ngIf="act.file_type == 'diferencias'">
+                <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+        </div>
+
+        <ion-item-divider>
+            <ion-label>
+                <h2>Fichas variadas:</h2>
+            </ion-label>
+        </ion-item-divider>
+        <div *ngFor="let act of activities">
+            <ion-item *ngIf="act.file_type == 'otros'">
+                <ion-label slot="start" class="p-2 text-wrap">{{act.name}}</ion-label>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+        </div>
+        <br>
+    </ion-list>
+    <!-- <br>
+    <br>
+    <br> -->
+
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="add" (click)="createActivity()"></ion-icon>
+        </ion-fab-button>
+    </ion-fab> -->
 
 </ion-content>
