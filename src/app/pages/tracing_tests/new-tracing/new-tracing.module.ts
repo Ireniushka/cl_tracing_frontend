@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NewTracingPageRoutingModule } from './new-tracing-routing.module';
 
 import { NewTracingPage } from './new-tracing.page';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
   imports: [

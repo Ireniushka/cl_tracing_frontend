@@ -3,7 +3,9 @@
         <ion-menu contentId="main-content" type="overlay" menuId="counselor-menu">
             <ion-content>
                 <ion-list id="cruds">
-                    <ion-list-header>{{name}}</ion-list-header>
+                    <ion-list-header>
+                        <h2>{{name}}</h2>
+                    </ion-list-header>
                     <ion-note>{{email}}</ion-note>
 
                     <ion-menu-toggle auto-hide="false" *ngFor="let a of counselorPages; let i = index">
@@ -31,7 +33,9 @@
         <ion-menu contentId="main-content" type="overlay" menuId="tutor-menu">
             <ion-content>
                 <ion-list id="todo">
-                    <ion-list-header>{{name}}</ion-list-header>
+                    <ion-list-header>
+                        <h2>{{name}}</h2>
+                    </ion-list-header>
                     <ion-note>{{email}}</ion-note>
 
                     <ion-menu-toggle auto-hide="false" *ngFor="let a of tutorPages; let i = index">

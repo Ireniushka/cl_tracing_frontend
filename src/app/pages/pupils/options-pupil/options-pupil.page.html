@@ -3,20 +3,21 @@
 <ion-content>
     <ion-content [fullscreen]="true">
         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+            <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Actualizando..">
             </ion-refresher-content>
         </ion-refresher>
         <ion-title class="ion-text-center">
             <h1>Alumnos</h1>
         </ion-title>
-        <ion-list *ngIf="pupils">
+        <ion-list *ngIf="pupils" class="p-3">
             <ion-item *ngFor="let pupil of pupils">
                 <h3>{{pupil.name}} {{pupil.last_name}}</h3>
                 <ion-select (click)="getPupil(pupil.id)" (ionChange)="go($event)" interface="popover" cancelText="Cancelar">
-                    <ion-select-option value="test">Hacer un test</ion-select-option>
-                    <ion-select-option value="ejercicio">Hacer un ejercicio</ion-select-option>
                     <ion-select-option value="datos">Consultar datos</ion-select-option>
                     <ion-select-option value="seguimiento">Consultar seguimiento</ion-select-option>
+                    <ion-select-option value="seg-ejercicio">Registrar un ejercicio</ion-select-option>
+                    <ion-select-option value="do-test">Hacer un test</ion-select-option>
+                    <ion-select-option value="seg-test">Registrar un test</ion-select-option>
                     <ion-select-option value="eliminar">Eliminar alumno</ion-select-option>
                 </ion-select>
             </ion-item>

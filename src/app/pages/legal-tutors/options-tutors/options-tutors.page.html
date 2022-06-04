@@ -3,13 +3,13 @@
 <ion-content>
     <ion-content [fullscreen]="true">
         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+            <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Actualizando...">
             </ion-refresher-content>
         </ion-refresher>
         <ion-title class="ion-text-center">
             <h1>Tutores Legales</h1>
         </ion-title>
-        <ion-list *ngIf="tutors">
+        <ion-list *ngIf="tutors" class="p-3">
             <ion-item *ngFor="let tutor of tutors">
                 <h3>{{tutor.name}} {{tutor.last_name}}</h3>
                 <ion-select (click)="getTutor(tutor.id)" (ionChange)="go($event)" interface="action-sheet" cancelText="Cancelar">

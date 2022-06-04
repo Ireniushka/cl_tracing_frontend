@@ -27,16 +27,16 @@ export class DataTutorPage implements OnInit {
   this.tutorId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
   this.getTutor(this.tutorId);
 
-}
+  }
 
 
  modifyTutor(){
   this.navCtrl.navigateRoot('update-tutor/'+ this.tutorId);
-}
+  }
 
  setTutor(data: any){
    this.tutor = data.User;
-   console.log(this.tutor)
+   console.log('tutor',this.tutor)
  }
 
  getTutor(id: any){

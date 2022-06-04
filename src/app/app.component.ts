@@ -69,7 +69,7 @@ export class AppComponent {
   }
 
   fillPupilArray(dataPupil: any){
-    this.pupilArray.push({name: dataPupil.Pupil.name, pupil_id: dataPupil.Pupil.id, url: 'tracing-pupil/:id', icon: 'person'})
+    this.pupilArray.push({name: dataPupil.Pupil.name, pupil_id: dataPupil.Pupil.id, url: 'tracings/'+dataPupil.Pupil.id, icon: 'person'})
     console.log(this.pupilArray)
   }
 

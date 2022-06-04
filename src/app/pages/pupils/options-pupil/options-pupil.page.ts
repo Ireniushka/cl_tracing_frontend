@@ -57,10 +57,13 @@ export class OptionsPupilPage implements OnInit {
     console.log(this.pupil.id);
     switch($event.detail.value){
       case "test" : 
-        this.navCtrl.navigateRoot('home');
+        this.navCtrl.navigateRoot('do-test');
         break;
-      case "ejercicio" : 
-        this.navCtrl.navigateRoot('home');
+      case "seg-test" : 
+        this.navCtrl.navigateRoot('new-tracing-test/'+ this.pupil.id);
+        break;
+      case "seg-ejercicio" : 
+        this.navCtrl.navigateRoot('new-tracing-act/'+ this.pupil.id);
         break;
       case "datos" : 
         this.navCtrl.navigateRoot('data-pupil/'+ this.pupil.id);

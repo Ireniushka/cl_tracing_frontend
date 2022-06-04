@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivitiesService } from '../../../services/activities/activities.service';
-import { TracingActivitiesService } from '../../../services/tracing-activities/tracing-activities.service';
+import { TracingTestsService } from '../../../services/tracing-tests/tracing-tests.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { PupilsService } from '../../../services/pupils/pupils.service';
-import { getTrailingCommentRanges } from 'typescript';
 
 @Component({
   selector: 'app-update-tracing',
@@ -12,31 +10,21 @@ import { getTrailingCommentRanges } from 'typescript';
   styleUrls: ['./update-tracing.page.scss'],
 })
 export class UpdateTracingPage implements OnInit {
-  activities: any;
-  tracing = {id: 0, pupil_id: 0, activity_id: 0, comment: ""};
+  tracing = {id: 0, pupil_id: 0, comment: "", lat_cruzada: true};
   pupil =  {name: "", last_name: ""};
   pupils: any;
 
 
-  constructor(private actService: ActivitiesService, private tracActService: TracingActivitiesService,
-    private activatedRoute: ActivatedRoute, private navCtrl: NavController, private pupilService: PupilsService) { }
+  constructor(private tracTestService: TracingTestsService, private activatedRoute: ActivatedRoute, 
+    private navCtrl: NavController, private pupilService: PupilsService) { }
 
   ngOnInit() {
     this.tracing.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.getTracing()
-    this.getActivities();
-  }
-
-  setActivityId($event){
-    this.tracing.activity_id = $event.detail.value;
+    this.getTracing();
   }
 
   setPupilId($event){
     this.tracing.pupil_id = $event.detail.value;
-  }
-
-  setActivities(data: any){
-    this.activities = data.Activities
   }
 
   setPupil($data: any){
@@ -47,15 +35,14 @@ export class UpdateTracingPage implements OnInit {
   setAllPupils($data: any){
     this.pupils = $data.Pupils;
   }
+
+  setResult($event){
+    this.tracing.lat_cruzada = $event.detail.value;
+  }
+
   setTracing($data: any){
     this.tracing = $data.Tracking_Activity;
     this.getDataPupil();
-  }
-
-  getActivities(){
-    this.actService.getAllActs().then(data => {
-      this.setActivities(data);
-    });
   }
 
   getDataPupil(){
@@ -69,11 +56,11 @@ export class UpdateTracingPage implements OnInit {
   }
 
   getTracing(){
-    this.tracActService.getTracingData(this.tracing.id).then(data => this.setTracing(data));
+    this.tracTestService.getTracingData(this.tracing.id).then(data => this.setTracing(data));
   }
 
   setUpdateTracing(){
-    //this.tracActService.updateTracing(this.tracing, this.tracing.id);
+    //this.tracTestService.updateTracing(this.tracing, this.tracing.id);
     console.log("nuevo", this.tracing);
     this.navCtrl.navigateRoot('options-pupils');
   }

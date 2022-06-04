@@ -28,16 +28,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
   },
   {
-    path: 'new-tracing',
+    path: 'new-tracing-act/:id',
     loadChildren: () => import('./pages/tracing-activities/new-tracing/new-tracing.module').then( m => m.NewTracingPageModule)
   },
   {
-    path: 'update-tracing',
+    path: 'update-tracing-act/:id',
     loadChildren: () => import('./pages/tracing-activities/update-tracing/update-tracing.module').then( m => m.UpdateTracingPageModule)
-  },
-  {
-    path: 'tracing-pupil/:id',
-    loadChildren: () => import('./pages/tracing-activities/tracing-pupil/tracing-pupil.module').then( m => m.TracingPupilPageModule)
   },
   {
     path: 'options-acts',
@@ -87,6 +83,15 @@ const routes: Routes = [
     path: 'update-pupil/:id',
     loadChildren: () => import('./pages/pupils/update-pupil/update-pupil.module').then( m => m.UpdatePupilPageModule)
   },
+  {
+    path: 'new-tracing-test/:id',
+    loadChildren: () => import('./pages/tracing_tests/new-tracing/new-tracing.module').then( m => m.NewTracingPageModule)
+  },
+  {
+    path: 'update-tracing-test/:id',
+    loadChildren: () => import('./pages/tracing_tests/update-tracing/update-tracing.module').then( m => m.UpdateTracingPageModule)
+  },
+
 
 
 

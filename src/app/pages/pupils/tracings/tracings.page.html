@@ -3,94 +3,68 @@
 <ion-content>
     <ion-toolbar>
         <br>
-        <ion-title size="large" class="ion-text-center">{{pupil.name}} {{pupil.last_name}}</ion-title>
+        <ion-title size="large" class="ion-text-center">
+            <h1>{{pupil.name}} {{pupil.last_name}}</h1>
+        </ion-title>
     </ion-toolbar>
     <br>
-    <!-- ordenar por fechas las filas -->
 
+    <ion-card class="margin">
+        <ion-card-header>
+            <ion-card-title><i>Seguimiento de ejercicios realizados</i></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-accordion-group *ngFor="let tracing of tracings_acts">
+                <ion-accordion>
+                    <ion-item slot="header">
+                        <ion-label>{{getName(tracing.activity_id)}}</ion-label>
+                    </ion-item>
 
-    <ion-grid id="activities">
-        <ion-row>
-            <ion-col col-12 class="ion-align-self-start" class="ion-justify-content-center">
-                <ion-label><i>Seguimiento de ejercicios realizados</i></ion-label>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-3>
-                <div>
-                    <ion-label><strong>Fecha</strong></ion-label>
-                </div>
-            </ion-col>
-            <ion-col col-3>
-                <div>
-                    <ion-label><strong>Nombre</strong></ion-label>
-                </div>
-            </ion-col>
-            <ion-col col-3>
-                <div>
-                    <ion-label><strong>Categoría</strong></ion-label>
-                </div>
-            </ion-col>
-            <ion-col col-3>
-                <div>
-                    <ion-label><strong>Comentarios</strong></ion-label>
-                </div>
-            </ion-col>
-        </ion-row>
+                    <ion-list slot="content">
+                        <ion-item>
+                            <ion-label>Fecha: </ion-label>
+                            <ion-label>{{tracing.created_at | date: "dd-MM-YYYY" }}</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Categoría: </ion-label>
+                            <ion-label>{{getCategory(tracing.activity_id)}}</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Comentario: </ion-label>
+                            <ion-input readonly class="ion-text-wrap" placeholder="                --- ">{{tracing.comment}}</ion-input>
+                        </ion-item>
+                    </ion-list>
+                </ion-accordion>
+            </ion-accordion-group>
 
-        <ion-row *ngFor="let tracing of tracings_acts">
-            <!-- div con ngFOr ?? en vez por 2 en cols -->
-            <ion-col col-3>
-                <ion-label>{{tracing.created_at | date: "dd-MM-YYYY" }}</ion-label>
-            </ion-col>
-            <ion-col *ngFor="let act of activities" col-3>
-                <ion-label *ngIf="act.id == tracing.activity_id">{{act.name}}</ion-label>
-            </ion-col>
-            <ion-col *ngFor="let act of activities" col-3>
-                <ion-label *ngIf="act.id == tracing.activity_id">{{act.file_type}}</ion-label>
-            </ion-col>
-            <ion-col col-3>
-                <ion-label default=" --- ">{{tracing.comment}}</ion-label>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+        </ion-card-content>
+    </ion-card>
     <br>
-    <br>
-    <ion-grid id="tests">
-        <ion-row>
-            <ion-col offset="3" class="ion-align-self-start">
-                <ion-label><i>Seguimiento de test realizados</i></ion-label>
-            </ion-col>
-        </ion-row>
-        <ion-row class="ion-align-items-start">
-            <ion-col size="3">
-                <div>
-                    <ion-label><strong>Fecha</strong></ion-label>
-                </div>
-            </ion-col>
-            <ion-col size="3">
-                <div>
-                    <ion-label><strong>Resultado</strong></ion-label>
-                </div>
-            </ion-col>
-            <ion-col *ngIf="isCounselor()" size="3">
-                <div>
-                    <ion-label><strong>Comentarios</strong></ion-label>
-                </div>
-            </ion-col>
-        </ion-row>
+    <ion-card class="margin">
+        <ion-card-header>
+            <ion-card-title><i>Seguimiento de tests realizados</i></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-accordion-group *ngFor="let tracing of tracings_tests">
+                <ion-accordion>
+                    <ion-item slot="header">
+                        <ion-label>{{tracing.created_at | date: "dd-MM-YYYY" }}</ion-label>
+                    </ion-item>
 
-        <ion-row class="ion-align-items-start" class="ion-justify-content-center" *ngFor="let tracing of tracings_tests">
-            <ion-col size="3">
-                <ion-datetime displayFormat="MM/DD/YYYY">{{tracing.created_at}}</ion-datetime>
-            </ion-col>
-            <ion-col size="3">
-                <ion-label>{{tracing.lat_cruzada}}</ion-label>
-            </ion-col>
-            <ion-col *ngIf="isCounselor()" size="3">
-                <ion-label default=" --- ">{{tracing.comment}}</ion-label>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+                    <ion-list slot="content">
+                        <ion-item>
+                            <ion-label>Resultado: </ion-label>
+                            <ion-label>{{printResult(tracing.lat_cruzada)}}</ion-label>
+                        </ion-item>
+                        <ion-item *ngIf="isCounselor()">
+                            <ion-label>Anotación: </ion-label>
+                            <ion-input readonly class="ion-text-wrap" placeholder="                  --- ">{{tracing.comment}}</ion-input>
+                        </ion-item>
+                    </ion-list>
+                </ion-accordion>
+            </ion-accordion-group>
+        </ion-card-content>
+    </ion-card>
+
     <br>
 </ion-content>

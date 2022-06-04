@@ -24,7 +24,6 @@ export class TracingsPage implements OnInit {
     private navCtrl: NavController, private tracActService: TracingActivitiesService, 
     private tracTestService: TracingTestsService, private authService: AuthService,
     private activityService: ActivitiesService) {
-      this.getTracingActivities();
       this.getActivities();
       this.getTracingTests();
   }
@@ -32,6 +31,7 @@ export class TracingsPage implements OnInit {
   ngOnInit() {
     this.pupilId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.getPupil(this.pupilId);
+    this.getTracingActivities();
   }
 
 
@@ -46,17 +46,13 @@ export class TracingsPage implements OnInit {
 
 
   setTracingActivities(data: any){
-    this.tracings_acts = data.Tracking_activities;
+    this.tracings_acts = data.Tracking_activities.filter((tracing) => tracing.pupil_id == this.pupilId);
+    console.log(this.tracings_acts)
   }
 
   setActivities(data: any){
     this.activities = data.Activities
   }
-
-  // setActivity($data){
-  //   this.activity = $data
-  //   console.log(this.activity)
-  // }
 
   getTracingActivities(){
     this.tracActService.getAllTracings().then(data => {
@@ -69,16 +65,26 @@ export class TracingsPage implements OnInit {
       this.setActivities(data)
     });
   }
-  
-  // getActivityName($id){
-  //   this.activityService.getActivityData($id).then(data => {
-  //     this.setActivity(data)
-  //   });
-  // }
+
+  getName($id){
+    for (let index = 0; index < this.activities.length; index++) {
+      if(this.activities[index].id == $id){
+        return this.activities[index].name
+      } 
+    }
+  }
+
+  getCategory($id){
+    for (let index = 0; index < this.activities.length; index++) {
+      if(this.activities[index].id == $id){
+        return this.activities[index].file_type
+      } 
+    }
+  }
 
 
   setTracingTests(data: any){
-    this.tracings_tests = data;
+    this.tracings_tests = data.Tracking_tests.filter((tracing) => tracing.pupil_id == this.pupilId);
     console.log(this.tracings_tests)
   }
 
@@ -99,6 +105,7 @@ export class TracingsPage implements OnInit {
 
   isCounselor(){
     if (this.authService.getTypeUser() == "counselor"){
+      console.log(this.authService.getTypeUser())
       return true
     }else{
       return false

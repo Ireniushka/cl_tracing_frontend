@@ -29,7 +29,9 @@ export class OptionsTutorsPage implements OnInit {
 
 
   setTutor(data: any){
-    this.tutor = data.Pupil;
+    this.tutor = data.User;
+    console.log(data);
+    console.log(this.tutor);
   }
 
   getTutor(id: any){
@@ -56,10 +58,10 @@ export class OptionsTutorsPage implements OnInit {
     console.log(this.tutor);
     switch($event.detail.value){
       case "datos" : 
-        this.navCtrl.navigateRoot('home');
+        this.navCtrl.navigateRoot('data-tutor/'+ this.tutor.id);
         break;
       case "eliminar" : 
-        this.navCtrl.navigateRoot('home');
+        this.presentAlertConfirm();
         break;
     }
   }

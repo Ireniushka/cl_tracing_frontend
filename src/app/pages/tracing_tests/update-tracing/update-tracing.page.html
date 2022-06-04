@@ -3,7 +3,7 @@
 <ion-content class="ion-padding">
     <ion-toolbar class="ion-text-center">
         <ion-title size="large">
-            <h1>Seguimiento de Ejercicios</h1>
+            <h1>Seguimiento de Tests</h1>
         </ion-title>
         <ion-label>
             <h2>Editando Registro</h2>
@@ -21,12 +21,15 @@
         <ion-input class="align-text-end" type="text">{{pupil.name}} {{pupil.last_name}}</ion-input>
     </ion-item>
     <ion-item>
-        <ion-label>Ejercicio</ion-label>
-        <ion-select (ionChange)="setActivityId($event)" placeholder="" okText="Listo" cancelText="Cancelar">
-            <ion-select-option class="auto" *ngFor="let act of activities" (ionChange)="setActivityId($event)" [value]="act.id">
-                {{act.name}}
-            </ion-select-option>
-        </ion-select>
+        <ion-label>Resultado lateralidad cruzada: </ion-label>
+        <ion-segment (ionChange)="setResult($event)" value="tracing.lat_cruzada">
+            <ion-segment-button value="true">
+                <ion-label>Positivo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="false">
+                <ion-label>Negativo</ion-label>
+            </ion-segment-button>
+        </ion-segment>
     </ion-item>
     <ion-item>
         <ion-label>Comentario: </ion-label>
